@@ -16,12 +16,14 @@ N bodies problem simulations
 
 
 #info
-first implementation 05/26/2014
-latest version : 07/17/2014
-Author : Clément Robert
+  first implementation 05/26/2014
+  
+  latest version : 07/17/2014
+
+  Author : Clément Robert
 
 #manip
-current compilation script : comprun.sh
-current main file : scenario.cpp
-parameters (G, c, timestep) and #includes in parameters.cpp (shouldn't this be a .h file ?)
+* current compilation script : comprun.sh
+* current main file : scenario.cpp
+* parameters (G, c, timestep) and #includes in parameters.cpp (shouldn't this be a .h file ?)
 
