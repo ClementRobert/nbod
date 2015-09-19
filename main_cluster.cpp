@@ -11,7 +11,7 @@ int main() {
     srand(time(0));//pas trouvé de meilleur endroit pour le seed
     double beginwith, endwith;
 
-    Cluster mycluster(3,2);//3 bodies 2D cluster
+    Cluster mycluster(15,2);//3 bodies 2D cluster
     //printing parameters 
     int prec(3),width(7+prec+4);
     int it, N(mycluster.getAdresses().size());
@@ -23,8 +23,8 @@ int main() {
 
     double start(time(0)), finish(0);
     int maxepoch = (maxtime/timestep);
-    ofstream enrc("energycurve.txt", ios::out); //ouverture en ecriture (ecrase)
-    ofstream traj("traj.txt", ios::out); //ouverture en ecriture (ecrase)
+    ofstream enrc("results/energycurve.txt", ios::out); //ouverture en ecriture (ecrase)
+    ofstream traj("results/traj.txt", ios::out); //ouverture en ecriture (ecrase)
 
 
        

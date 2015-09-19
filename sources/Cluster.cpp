@@ -7,10 +7,14 @@ Cluster::Cluster(int N,int dim){
         for(y=0 ; y<N; y++){
             pointer = new MassiveParticle;
             if(dim==2){
-                valarray<double> projpos(0.,3);
+                valarray<double> projpos(0.,3), projvel(0.,3);
+                
                 projpos[0] = (*pointer).m_position[0];
                 projpos[1] = (*pointer).m_position[1];
+                projvel[0] = (*pointer).m_velocity[0];
+                projvel[1] = (*pointer).m_velocity[1];
                 (*pointer).setposition(projpos); 
+                (*pointer).setvelocity(projvel); 
             }
             m_massadresses.push_back(pointer);
         }

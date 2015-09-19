@@ -1,4 +1,4 @@
-<meta charset="UTF-8"> <!--/déclaration de l'encodage directement en html-->
+<meta charset="UTF-8">
 
 Notes
 =====
@@ -15,7 +15,6 @@ Notes
 ###Affichage
 - erreur de segmentation quand on appelle la fonction membre "draw" de la classe cluster
 - le soleil dans le scénario (main) nbod_sfml.cpp n'a pas l'air de bouger du tout (tentative de le tracker ne semble rien amener comme info)
-
 
 ##Perspectives
 
