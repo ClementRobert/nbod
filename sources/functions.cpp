@@ -3,16 +3,14 @@
 using namespace std;
 
 double dot(valarray<double> a, valarray<double> b){
-    int n(a.size()), i(0);
     double prod(0.);
-    for(i=0 ; i<n ; i++){
+    for(int i=0 ; i<a.size() ; i++){
         prod += a[i]*b[i];
     }
 return prod;
 }
 
 valarray<double> cross(valarray<double> a, valarray<double> b){
-    int n(a.size()), i(0);
     valarray<double> prod(0.,3);
     prod[0] = a[1]*b[2] - a[2]*b[1];
     prod[1] = a[2]*b[0] - a[0]*b[2];

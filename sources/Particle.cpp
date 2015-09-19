@@ -31,13 +31,13 @@ void Particle::print(ostream &stream) const {
 }
 
 
-void Particle::draw(sf::RenderWindow &app) const {
-    sf::CircleShape circle(10,50);//size arbitraire et fixe, ici
-    circle.setFillColor(sf::Color::Blue);
-    int i;
-    circle.setPosition(m_position[0],m_position[1]);//DRAWING IN 2D !
-    app.draw(circle);
-}
+// void Particle::draw(sf::RenderWindow &app) const {
+//     sf::CircleShape circle(10,50);//size arbitraire et fixe, ici
+//     circle.setFillColor(sf::Color::Blue);
+//     int i;
+//     circle.setPosition(m_position[0],m_position[1]);//DRAWING IN 2D !
+//     app.draw(circle);
+// }
 
 
 
