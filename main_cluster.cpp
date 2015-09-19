@@ -34,7 +34,7 @@ int main() {
        
     cout << scientific << setprecision(prec) << left;
     ficen << scientific << setprecision(16) << left;
-    cout << "Epoch              PotEn         KiEn         TotEn" << endl;
+    cout << "Epoch              PotEn         KiEn          TotEn" << endl;
   
     while(mycluster.getEpoch()<maxepoch){
         mycluster.walkonestep();
