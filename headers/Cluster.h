@@ -5,8 +5,11 @@
 
 class Cluster{//friend class of MassiveParticle
     public :
-        Cluster(int N = 0);
-        void walkonestep();
+        Cluster(int N=0, int dim=3);
+        Cluster(const Cluster&);//constructeur par recopie, nécessaire pour rk4
+        void euler();//walk one step (euler)
+        void rk4();//rk4
+        void leapfrog();//leapfrog
         int getEpoch();
         vector<MassiveParticle*> getAdresses();
         void updateKinetic();
@@ -18,7 +21,10 @@ class Cluster{//friend class of MassiveParticle
         double time();
 
         //affichage
-        void draw(sf::RenderWindow &app);
+        void draw(sf::RenderWindow &app);//WIP
+
+
+
     protected :
         int m_epoch;
         double m_kineticEnergy;

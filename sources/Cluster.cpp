@@ -1,12 +1,19 @@
 #include "Cluster.h"
 
-Cluster::Cluster(int N){
+Cluster::Cluster(int N,int dim){
     MassiveParticle *pointer(0);
     int y;
-    for(y=0 ; y<N; y++){
-        pointer = new MassiveParticle;
-        m_massadresses.push_back(pointer);
-    }
+    
+        for(y=0 ; y<N; y++){
+            pointer = new MassiveParticle;
+            if(dim==2){
+                valarray<double> projpos(0.,3);
+                projpos[0] = (*pointer).m_position[0];
+                projpos[1] = (*pointer).m_position[1];
+                (*pointer).setposition(projpos); 
+            }
+            m_massadresses.push_back(pointer);
+        }
     pointer = 0;
     m_epoch = 0;
 }
@@ -34,8 +41,10 @@ valarray<valarray<double> > Cluster::componestep(valarray<valarray<double> > boo
     return newboostTab;
 }
 
-
-void Cluster::walkonestep(){
+/*--------------------------------------------------
+                     INTEGRATORS
+  --------------------------------------------------*/
+void Cluster::euler(){
     int N(m_massadresses.size()), i;
     valarray<double> o(0.,3);
     valarray<valarray<double> > boostTab(o,N);
@@ -50,7 +59,21 @@ void Cluster::walkonestep(){
     m_epoch++;
 }
 
+// void Cluster::rk4(){
+//     Cluster cp1(*this),cp2(*this),cp3(*this),cp4(*this);
+//     cp1.euler();
+//     cp2 = cp1;
+//     cp2.euler();
+//     cp3 = cp2();
+//     cp3.euler();
+//     cp4 = cp3;
+//     cp4.euler();
+    
+    
+               
+// }
 
+//MISC
 void Cluster::dealwithcollisions(){
     MassiveParticle *ptr1(0), *ptr2(0);
     int i,j, N(m_massadresses.size());
@@ -61,8 +84,7 @@ void Cluster::dealwithcollisions(){
             ptr2 = m_massadresses[j];
             double r((*ptr1).distanceTo(*ptr2));
             if(r < (*ptr1).m_radius + (*ptr2).m_radius){
-                cout << "collision at epoch " << m_epoch << " , distance " << r << endl;
-                
+                cout << "collision at epoch " << m_epoch << " , distance " << r << endl;                
 //                (*ptr1).m_mass += (*ptr2).m_mass;
 //                (*ptr2).m_mass = 0.;
             }
