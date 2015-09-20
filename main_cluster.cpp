@@ -13,7 +13,7 @@ int main() {
     srand(time(0));//pas trouvé de meilleur endroit pour le seed
     double beginwith, endwith;
 
-    Cluster mycluster(10,2);//3 bodies 2D cluster
+    Cluster mycluster(20,2);//20 bodies 2D cluster
     //printing parameters 
     int prec(3),width(7+prec+4);
     int it, N(mycluster.getAdresses().size());
@@ -28,7 +28,6 @@ int main() {
     ofstream enrc("results/energycurve.txt", ios::out); //ouverture en ecriture (ecrase)
     ofstream traj("results/traj.txt", ios::out); //ouverture en ecriture (ecrase)
 
-
        
     cout << scientific << setprecision(prec) << left;
     traj << scientific << setprecision(16) << left;
@@ -36,18 +35,20 @@ int main() {
 
   
     ContextSettings settings;
-    settings.antialiasingLevel=500;
+    settings.antialiasingLevel=8;
 
-    RenderWindow app(VideoMode(600,600,64), "une fenetre SFML !",Style::Close | Style::Titlebar | Style::Resize);
+    RenderWindow app(VideoMode(600,600,64), "N bodies simulation",Style::Close | Style::Titlebar | Style::Resize);
     //créé une fenêtre de 800x600px en affichage 64bits
     //avec bouton de fermeture, barre de titre et possibilité de redimensionner la fenêtre
 
+    Event ev;
 
     /*--------------------------------------------------
                         MAIN LOOP
       --------------------------------------------------*/
 
-    Event ev;
+    valarray <double> REFPOS(0.,3);
+    
     while (app.isOpen()){
         while(mycluster.getEpoch()<maxepoch){
             app.clear(Color::Black);
@@ -57,7 +58,7 @@ int main() {
                 //prototype de la future fonction Cluster::draw(&app)
                 for(it=0 ; it<N ; it++){
                     point = copyadresses[it];
-                    (*point).draw(app);
+                    (*point).draw(app,REFPOS);
                 }
                 app.display();
             }
@@ -71,7 +72,6 @@ int main() {
                 cout << setw(width) << mycluster.getKineticEnergy();
                 cout << setw(width) << mycluster.getTotalEnergy() << endl;
 
-
                 enrc << mycluster.getEpoch() << "    ";
                 enrc << mycluster.getPotentialEnergy() << "    ";
                 enrc << mycluster.getKineticEnergy() << "    ";
@@ -84,14 +84,11 @@ int main() {
                 for(it=0 ; it<N ; it++){
                     point = copyadresses[it];
                     cout << "body #" << it << " : ";
-                    cout << setw(width) << (*point).getposition()[0];
-                    cout << setw(width) << (*point).getposition()[1];
-                    cout << setw(width) << (*point).getposition()[2];
+                    for(int j=0;j<3;j++){
+                        cout << setw(width)  << (*point).getposition()[j];
+                        traj << setw(7+16+4) << (*point).getposition()[j];
+                    }
                     cout << endl;
-
-                    traj << setw(7+16+4) << (*point).getposition()[0];
-                    traj << setw(7+16+4) << (*point).getposition()[1];
-                    traj << setw(7+16+4) << (*point).getposition()[2];
                 }
                 cout << endl << endl;
                 traj << endl;

@@ -8,8 +8,8 @@ Particle::Particle() {//constructeur random
     m_position = a; m_velocity = a;
     m_nextBoost = a;
     for(i=0 ; i < 3 ; i++){
-        m_position[i] = rand()%(maxx)*RANGEX;// - maxx/1000.;
-        m_velocity[i] = rand()%(maxv)*RANGEV;// - maxv/1000.;
+        m_position[i] = (rand()%(2*maxx) - maxx)*RANGEX;
+        m_velocity[i] = (rand()%(2*maxv) - maxv)*RANGEV;
     }
 }
 

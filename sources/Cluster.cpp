@@ -2,17 +2,16 @@
 
 Cluster::Cluster(int N,int dim){
     MassiveParticle *pointer(0);
-    int y;
+    int y,d;
     
         for(y=0 ; y<N; y++){
             pointer = new MassiveParticle;
             if(dim==2){
                 valarray<double> projpos(0.,3), projvel(0.,3);
-                
-                projpos[0] = (*pointer).m_position[0];
-                projpos[1] = (*pointer).m_position[1];
-                projvel[0] = (*pointer).m_velocity[0];
-                projvel[1] = (*pointer).m_velocity[1];
+                for(d=0;d<2;d++){
+                    projpos[d] = (*pointer).m_position[d];
+                    projvel[d] = (*pointer).m_velocity[d];
+                }
                 (*pointer).setposition(projpos); 
                 (*pointer).setvelocity(projvel); 
             }
@@ -74,7 +73,6 @@ void Cluster::euler(){
 //     cp4.euler();
     
     
-               
 // }
 
 //MISC

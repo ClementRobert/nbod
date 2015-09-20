@@ -26,6 +26,18 @@ void MassiveParticle::printSystem(){
 }
 
 
+void MassiveParticle::draw(sf::RenderWindow &app, valarray <double> refpos) const {
+    sf::CircleShape circle(m_radius*3*pow(10,3),50);
+    circle.setFillColor(sf::Color::Blue);
+    valarray <double> pos(0.,2);
+    for(int i=0;i<2;i++){
+        pos[i]=250+m_position[i] - refpos[i];//500 is temporary, must be accessible in app.
+    }
+    circle.setPosition(pos[0],pos[1]);//DRAWING IN 2D !
+    app.draw(circle);
+}
+
+
 
 //ceci n'est pas une méthode statique
 valarray<double> MassiveParticle::compacc(MassiveParticle part2) const {

@@ -21,7 +21,7 @@ class MassiveParticle : public Particle {
 
         //affichage
         virtual void print(ostream &stream) const;
-
+        void draw(sf::RenderWindow &app, valarray <double> refpos) const;
         //accesseurs et autres méthodes constantes
         double getmass() const;
         double getke() const; //accesseur de l'energie cinétique
