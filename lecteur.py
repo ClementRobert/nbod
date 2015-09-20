@@ -38,8 +38,8 @@ def readenergy(filename):
 
 
 
-readtraj('traj.txt')
-readenergy('energycurve.txt')
+readtraj('results/traj.txt')
+readenergy('results/energycurve.txt')
 c = raw_input("press 'enter' to close  ")
 plt.close("all")
 

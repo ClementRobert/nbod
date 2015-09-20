@@ -8,8 +8,8 @@ Particle::Particle() {//constructeur random
     m_position = a; m_velocity = a;
     m_nextBoost = a;
     for(i=0 ; i < 3 ; i++){
-        m_position[i] = rand()%(2*maxx)/1000. - maxx/1000.;
-        m_velocity[i] = rand()%(2*maxv)/1000. - maxv/1000.;
+        m_position[i] = rand()%(maxx)*RANGEX;// - maxx/1000.;
+        m_velocity[i] = rand()%(maxv)*RANGEV;// - maxv/1000.;
     }
 }
 
@@ -31,13 +31,13 @@ void Particle::print(ostream &stream) const {
 }
 
 
-// void Particle::draw(sf::RenderWindow &app) const {
-//     sf::CircleShape circle(10,50);//size arbitraire et fixe, ici
-//     circle.setFillColor(sf::Color::Blue);
-//     int i;
-//     circle.setPosition(m_position[0],m_position[1]);//DRAWING IN 2D !
-//     app.draw(circle);
-// }
+void Particle::draw(sf::RenderWindow &app) const {
+    sf::CircleShape circle(10,50);//size arbitraire et fixe, ici
+    circle.setFillColor(sf::Color::Blue);
+    int i;
+    circle.setPosition(m_position[0],m_position[1]);//DRAWING IN 2D !
+    app.draw(circle);
+}
 
 
 

@@ -54,7 +54,7 @@ valarray<double> MassiveParticle::compacc(MassiveParticle part2) const {
 
 
 //constructeurs
-MassiveParticle::MassiveParticle() : Particle(), m_mass(rand()%maxm){
+MassiveParticle::MassiveParticle() : Particle(), m_mass(rand()%maxm*RANGEM){
     setke();
     setradius();
     adresses.push_back(this);
