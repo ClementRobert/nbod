@@ -25,3 +25,18 @@ Notes/TODOS
 
 ##Bugs
 - Le soleil (et peut-être les autres particules aussi) n'est pas affiché avec son propre rayon.
+
+misc notes (old)
+================
+
+##Possibles améliorations
+
+###prioritaires
+
+- nouvelle classe ou attribut des clusters pour les massless particles ?
+- implementer solution pour collision (donc destructeurs et moyen d'éditer la m_adresses...) afin de mieux génerer les aléas des scripts à particules aléatoires
+
+###à terme
+
+* integrateur RK4 ou frogleap prolongé (ordre 4)
+* réduire le nombre de constructeurs au profit de valeurs par défaut
