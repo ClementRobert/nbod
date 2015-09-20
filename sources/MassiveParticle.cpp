@@ -36,7 +36,7 @@ void MassiveParticle::draw(sf::RenderWindow &app, valarray <double> refpos) cons
     valarray <double> pos(0.,2);
     for(int i=0;i<2;i++){
         pos[i]= window_center[i] + m_position[i] - refpos[i];//450 is a -temporary- centering parameter
-        pos[i] -= sqrt(2)*R;
+        pos[i] -= R;
     }
     circle.setPosition(pos[0],pos[1]);//DRAWING IN 2D !
     app.draw(circle);

@@ -64,6 +64,11 @@ int main() {
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
                 REFPOS[0]=mycluster.getsun().getposition()[0];
                 REFPOS[1]=mycluster.getsun().getposition()[1];
+
+                //get fun
+                // REFPOS[0]=(*(copyadresses[2])).getposition()[0];
+                // REFPOS[1]=(*(copyadresses[2])).getposition()[1];
+                
                 mycluster.getsun().draw(app,REFPOS);
                 //prototype de la future fonction Cluster::draw(&app)
                 for(it=1 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
@@ -71,6 +76,32 @@ int main() {
                     (*point).draw(app,REFPOS);
                 }
                 
+
+                /*------------
+                  testZone
+                  -----------*/
+
+                // double R(80);
+                // valarray <int> window_center(0.,2);
+                // window_center[0]=app.getSize().x/2;
+                // window_center[1]=app.getSize().y/2;
+                // sf::CircleShape circle(R,50);
+                // circle.setFillColor(sf::Color::Red);
+                // valarray <double> pos(0.,2);
+                // for(int i=0;i<2;i++){
+                //     pos[i] = window_center[i];// - REFPOS[i];
+                //     pos[i] -= R;
+                // }
+                // circle.setPosition(pos[0],pos[1]);//DRAWING IN 2D !
+                // app.draw(circle);
+
+
+                /*------------
+                  end testZone
+                  -----------*/
+
+
+
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){
