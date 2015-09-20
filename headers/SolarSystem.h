@@ -8,10 +8,11 @@ class SolarSystem : public Cluster{
 
     public :
     SolarSystem(int N = 0);//N=number of stallites at initialization
-    MassiveParticle getsun() const;
+    MassiveParticle getsun() const {return m_sun;};
     //valarray<MassiveParticle> getsatellites const;
     
-    
+
+   
     protected :
     MassiveParticle m_sun;
     void setSatVelocity(MassiveParticle& newSat, valarray<double> orbitedirection);

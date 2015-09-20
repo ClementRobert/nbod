@@ -13,7 +13,8 @@ int main() {
     srand(time(0));//pas trouvé de meilleur endroit pour le seed
     double beginwith, endwith;
 
-    Cluster mycluster(20,2);//20 bodies 2D cluster
+    //Cluster mycluster(20,2);//20 bodies 2D cluster
+    SolarSystem mycluster(15);//15 planets ssyst
     //printing parameters 
     int prec(3),width(7+prec+4);
     int it, N(mycluster.getAdresses().size());
@@ -48,18 +49,26 @@ int main() {
       --------------------------------------------------*/
 
     valarray <double> REFPOS(0.,3);
+
+
+
+    cout << "in main, sun mass and radius : " << mycluster.getsun().getmass() << "   " << mycluster.getsun().getradius() << endl;
     
     while (app.isOpen()){
         while(mycluster.getEpoch()<maxepoch){
             app.clear(Color::Black);
             mycluster.euler();
 
+
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
+                REFPOS[0]=mycluster.getsun().getposition()[0];
+                REFPOS[1]=mycluster.getsun().getposition()[1];
                 //prototype de la future fonction Cluster::draw(&app)
-                for(it=0 ; it<N ; it++){
+                for(it=0 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
                     point = copyadresses[it];
                     (*point).draw(app,REFPOS);
                 }
+                mycluster.getsun().draw(app,REFPOS);
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){
@@ -88,6 +97,8 @@ int main() {
                         cout << setw(width)  << (*point).getposition()[j];
                         traj << setw(7+16+4) << (*point).getposition()[j];
                     }
+                    cout << setw(width) << (*point).getmass();
+                    cout << setw(width) << (*point).getradius();
                     cout << endl;
                 }
                 cout << endl << endl;

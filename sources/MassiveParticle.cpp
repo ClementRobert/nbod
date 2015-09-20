@@ -72,7 +72,7 @@ MassiveParticle::MassiveParticle() : Particle(), m_mass(rand()%maxm*RANGEM){
     adresses.push_back(this);
 }
 
-MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass(rand()%maxm), m_potentialEnergy(0.){ 
+MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass(rand()%maxm*RANGEM), m_potentialEnergy(0.){ 
     setke();
     setradius();
     adresses.push_back(this);
@@ -110,14 +110,6 @@ void MassiveParticle::print(ostream &stream) const {
 }
 
 //accesseurs et méthodes constantes
-double MassiveParticle::getmass() const {
-    return m_mass;
-}
-
-double MassiveParticle::getke() const {
-    return m_kineticEnergy;
-}
-
 double MassiveParticle::boundingEnergy(MassiveParticle otherParticle) const {
     double d, be;
     d = distanceTo(otherParticle);

@@ -38,7 +38,6 @@ valarray<valarray<double> > Cluster::componestep(valarray<valarray<double> > boo
                 newboostTab[i] +=   acc;
                 newboostTab[j] += - acc * (*ptr1).m_mass / (*ptr2).m_mass;
             }
-
         }
     }
     return newboostTab;

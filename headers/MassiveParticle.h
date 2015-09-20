@@ -23,8 +23,9 @@ class MassiveParticle : public Particle {
         virtual void print(ostream &stream) const;
         void draw(sf::RenderWindow &app, valarray <double> refpos) const;
         //accesseurs et autres méthodes constantes
-        double getmass() const;
-        double getke() const; //accesseur de l'energie cinétique
+        double getmass() const {return m_mass;};
+        double getradius() const {return m_radius;};
+        double getke() const {return m_kineticEnergy;};
         double getpe() const;//pas très utile, je l'implémenterai SI ça le devient
 
         double boundingEnergy(MassiveParticle otherParticle) const;
