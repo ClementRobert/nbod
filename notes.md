@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 
 Notes/TODOS
-============
+===========
 
 ##Problèmes actuels
 
@@ -19,4 +19,6 @@ Notes/TODOS
 ##A faire 
 
 - ameliorer/afiner la méthode de construction random des position/velocités/masses
+- ajouter affichage de l'étoile, du centre de masse
+- ajouter tracé des orbites instatanées
 
