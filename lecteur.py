@@ -9,8 +9,9 @@ colors = ["#cf7f0e", "#729fcf", "#555753", "#f667ca", "#9156f6", "#73d216", "#ef
 
 def readtraj(filename):
     plt.ion()
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    fig,ax=plt.subplots()
+    #fig = plt.figure()
+    #ax = fig.gca(projection='3d')
     ax.set_color_cycle(colors)
     ax.ticklabel_format(style = "scientific", scilimits =(0,0))
 
@@ -18,8 +19,11 @@ def readtraj(filename):
     N = t.shape[1]
     n=0;i=0
     while n+2 < N:
-        ax.scatter(t[:,n][-1], t[:,n+1][-1], t[:,n+2][-1])
-        ax.plot(t[:,n], t[:,n+1], t[:,n+2])
+#        ax.scatter(t[:,n][-1], t[:,n+1][-1], t[:,n+2][-1])
+#        ax.plot(t[:,n], t[:,n+1], t[:,n+2])
+
+        ax.scatter(t[:,n][-1], t[:,n+1][-1])
+        ax.plot(t[:,n], t[:,n+1])
         n+=3
 
 def readenergy(filename):

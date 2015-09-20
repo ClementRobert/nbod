@@ -21,4 +21,4 @@ Notes/TODOS
 - ameliorer/afiner la méthode de construction random des position/velocités/masses
 - ajouter affichage de l'étoile, du centre de masse
 - ajouter tracé des orbites instatanées
-
+- vérifier l'existence des 4 fonctions minimales pour chaque classe 
