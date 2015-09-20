@@ -27,7 +27,7 @@ void MassiveParticle::printSystem(){
 
 
 void MassiveParticle::draw(sf::RenderWindow &app, valarray <double> refpos) const {
-    double R(m_radius*3*pow(10,3));
+    double R(m_radius*2*pow(10,3));
     valarray <int> window_center(0.,2);
     window_center[0]=app.getSize().x/2;
     window_center[1]=app.getSize().y/2;
