@@ -38,9 +38,10 @@ int main() {
     ContextSettings settings;
     settings.antialiasingLevel=8;
 
-    RenderWindow app(VideoMode(600,600,64), "N bodies simulation",Style::Close | Style::Titlebar | Style::Resize);
+    RenderWindow app(VideoMode(500,500,64), "N bodies simulation",Style::Close | Style::Titlebar | Style::Resize);
     //créé une fenêtre de 800x600px en affichage 64bits
     //avec bouton de fermeture, barre de titre et possibilité de redimensionner la fenêtre
+
 
     Event ev;
 
@@ -64,11 +65,10 @@ int main() {
                 REFPOS[0]=mycluster.getsun().getposition()[0];
                 REFPOS[1]=mycluster.getsun().getposition()[1];
                 //prototype de la future fonction Cluster::draw(&app)
-                for(it=0 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
+                for(it=1 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
                     point = copyadresses[it];
                     (*point).draw(app,REFPOS);
                 }
-                mycluster.getsun().draw(app,REFPOS);
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){

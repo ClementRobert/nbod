@@ -27,11 +27,16 @@ void MassiveParticle::printSystem(){
 
 
 void MassiveParticle::draw(sf::RenderWindow &app, valarray <double> refpos) const {
-    sf::CircleShape circle(m_radius*3*pow(10,3),50);
+    double R(m_radius*3*pow(10,3));
+    valarray <int> window_center(0.,2);
+    window_center[0]=app.getSize().x/2;
+    window_center[1]=app.getSize().y/2;
+    sf::CircleShape circle(R,50);
     circle.setFillColor(sf::Color::Blue);
     valarray <double> pos(0.,2);
     for(int i=0;i<2;i++){
-        pos[i]=250+m_position[i] - refpos[i];//500 is temporary, must be accessible in app.
+        pos[i]= window_center[i] + m_position[i] - refpos[i];//450 is a -temporary- centering parameter
+        pos[i] -= sqrt(2)*R;
     }
     circle.setPosition(pos[0],pos[1]);//DRAWING IN 2D !
     app.draw(circle);
@@ -66,13 +71,13 @@ valarray<double> MassiveParticle::compacc(MassiveParticle part2) const {
 
 
 //constructeurs
-MassiveParticle::MassiveParticle() : Particle(), m_mass(rand()%maxm*RANGEM){
+MassiveParticle::MassiveParticle() : Particle(), m_mass((rand()%maxm+1)*RANGEM){
     setke();
     setradius();
     adresses.push_back(this);
 }
 
-MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass(rand()%maxm*RANGEM), m_potentialEnergy(0.){ 
+MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass((rand()%maxm+1)*RANGEM), m_potentialEnergy(0.){ 
     setke();
     setradius();
     adresses.push_back(this);
