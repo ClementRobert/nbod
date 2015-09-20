@@ -64,11 +64,13 @@ int main() {
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
                 REFPOS[0]=mycluster.getsun().getposition()[0];
                 REFPOS[1]=mycluster.getsun().getposition()[1];
+                mycluster.getsun().draw(app,REFPOS);
                 //prototype de la future fonction Cluster::draw(&app)
                 for(it=1 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
                     point = copyadresses[it];
                     (*point).draw(app,REFPOS);
                 }
+                
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){

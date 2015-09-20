@@ -5,11 +5,12 @@ SolarSystem::SolarSystem(int N){
     orbitedirection[2] = 1.;
     valarray<double> o(0.,3);
 
+    Star *starptr(0);
     MassiveParticle *pointer(0);
     //    pointer = new MassiveParticle(o,o,pow(10,2)*maxm);
-    pointer = new MassiveParticle(o,o,pow(10,5)*RANGEM*maxm);//!!!!
-    m_sun = *pointer;
-    m_massadresses.push_back(pointer);    
+    starptr = new Star(o,o,pow(10,5)*RANGEM*maxm);
+    m_sun = *starptr;
+    m_massadresses.push_back(starptr);//Pas compatible    
     cout << "in SS constructor, radius of the sun is : " << m_sun.m_radius << endl; 
     
     int y;

@@ -6,7 +6,6 @@ Notes/TODOS
 ##Problèmes actuels
 
 ###Affichage
-- le soleil devrait avoir sa propre classe Star pour utiliser un affichage différent, et une densité différente, sinon le rayon utilisé cache toutes les planètes
 - il faut une méthode de classe draw() pour Cluster (dont héritera SolarSystem) avec arguement refpos par défaut centré sur le soleil
 
 ###Integrateurs
@@ -22,3 +21,7 @@ Notes/TODOS
 - ajouter affichage de l'étoile, du centre de masse
 - ajouter tracé des orbites instatanées
 - vérifier l'existence des 4 fonctions minimales pour chaque classe 
+
+
+##Bugs
+- Le soleil (et peut-être les autres particules aussi) n'est pas affiché avec son propre rayon.
