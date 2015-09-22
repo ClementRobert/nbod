@@ -23,6 +23,7 @@ Cluster::Cluster(int N,int dim){
 
 
 valarray<valarray<double> > Cluster::componestep(valarray<valarray<double> > boostTab){
+
     int N(m_massadresses.size()), i,j;
     valarray<double> acc(0.,3), o(0.,3);
     valarray<valarray<double> > newboostTab(o,N);
@@ -95,14 +96,12 @@ void Cluster::dealwithcollisions(){
 }
 
 
-void Cluster::draw(sf::RenderWindow &app){
-    int i,N;
-    N=m_massadresses.size();
-    MassiveParticle& copy(*m_massadresses[0]);
-    for(i=0 ; N ; i++){
-        copy=*m_massadresses[i];
-        std::cout << N << endl;
-        //copy.draw(app);
+void Cluster::draw(sf::RenderWindow &app, valarray <double> refpos) const{
+    MassiveParticle *p(0);
+    int N(m_massadresses.size());
+    for(int i=0 ; i<N ; i++){
+        p = m_massadresses[i];
+        (*p).draw(app,refpos);
     }
 }
 

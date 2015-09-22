@@ -11,7 +11,8 @@ class SolarSystem : public Cluster{
     SolarSystem(int N = 0);//N=number of stallites at initialization
     Star getsun() const {return m_sun;};
     //valarray<MassiveParticle> getsatellites const;
-    
+
+    void draw(sf::RenderWindow &app, valarray<double> refpos) const;
 
    
     protected :

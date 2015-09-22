@@ -21,7 +21,7 @@ class Cluster{//friend class of MassiveParticle
         double time();
 
         //affichage
-        void draw(sf::RenderWindow &app);//WIP
+        void draw(sf::RenderWindow &app, valarray<double> refpos) const;//WIP, manque valeur par défaut
 
 
 

@@ -30,7 +30,7 @@ int main() {
     ofstream traj("results/traj.txt", ios::out); //ouverture en ecriture (ecrase)
 
        
-    cout << scientific << setprecision(prec) << left;
+    cout << scientific << setprecision(prec) << right;
     traj << scientific << setprecision(16) << left;
     enrc << scientific << setprecision(16) << left;
 
@@ -64,17 +64,12 @@ int main() {
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
                 REFPOS[0]=mycluster.getsun().getposition()[0];
                 REFPOS[1]=mycluster.getsun().getposition()[1];
-
                 //get fun
                 // REFPOS[0]=(*(copyadresses[2])).getposition()[0];
                 // REFPOS[1]=(*(copyadresses[2])).getposition()[1];
-                
-                mycluster.getsun().draw(app,REFPOS);
-                //prototype de la future fonction Cluster::draw(&app)
-                for(it=1 ; it<N ; it++){//ATTENTION : on part de 1 pour éviter de dessiner le soleil deux fois
-                    point = copyadresses[it];
-                    (*point).draw(app,REFPOS);
-                }
+
+
+                mycluster.draw(app,REFPOS);
                 
 
                 /*------------
@@ -99,16 +94,13 @@ int main() {
                 /*------------
                   end testZone
                   -----------*/
-
-
-
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){
                 mycluster.updateTotalEnergy();
-                cout << "----------------------------------------------------" << endl;
-                cout << "Epoch              PotEn         KiEn          TotEn" << endl;
-                cout << "----------------------------------------------------" << endl;
+                cout << "--------------------------------------------------------" << endl;
+                cout << "         Epoch         PotEn          KiEn         TotEn" << endl;
+                cout << "--------------------------------------------------------" << endl;
                 cout << setw(width) << double(mycluster.getEpoch());
                 cout << setw(width) << mycluster.getPotentialEnergy();
                 cout << setw(width) << mycluster.getKineticEnergy();
@@ -121,11 +113,13 @@ int main() {
 
        
                 cout << endl;
-                cout << "Positions of every particle..." << endl;
+                cout << "----------------------------------------------------------------------------" << endl;
+                cout << "Body #             x             y             z          mass        radius" << endl;
+                cout << "----------------------------------------------------------------------------" << endl;
 
                 for(it=0 ; it<N ; it++){
                     point = copyadresses[it];
-                    cout << "body #" << it << " : ";
+                    cout << setw(6) << it;
                     for(int j=0;j<3;j++){
                         cout << setw(width)  << (*point).getposition()[j];
                         traj << setw(7+16+4) << (*point).getposition()[j];

@@ -40,3 +40,18 @@ void SolarSystem::genSatellite(valarray<double> orbitedirection){
     setSatVelocity(*pointer, orbitedirection);//fill in the blank pour l'excentricity
     m_massadresses.push_back(pointer);
 }
+
+//affichage
+void SolarSystem::draw(sf::RenderWindow &app, valarray<double> refpos) const{
+    getsun().draw(app,refpos);
+    //(*this).Cluster::draw(app,refpos);//à rétanlir quand la fonction d'intégration temporelle sera à jour
+
+    MassiveParticle *p(0);
+    int N(m_massadresses.size());
+    for(int i=1 ; i<N ; i++){
+        p = m_massadresses[i];
+        (*p).draw(app,refpos);
+    }
+
+
+}
