@@ -1,10 +1,8 @@
+#include "parameters.h"
 #include "Particle.h"
 #include "MassiveParticle.h"
 #include "Cluster.h"
 #include "SolarSystem.h"
-
-#include <cstdlib>
-#include <iomanip>
 
 using namespace std;
 using namespace sf;
@@ -15,11 +13,10 @@ int main() {
 
     //Cluster mycluster(20,2);//20 bodies 2D cluster
     SolarSystem mycluster(15);//15 planets ssyst
-    //printing parameters 
-    int prec(3),width(7+prec+4);
-    int it, N(mycluster.getAdresses().size());
+    valarray <double> REFPOS(0.,3);
+    int N(mycluster.getAdresses().size());
 
-    MassiveParticle *point(0);
+    MassiveParticle *p(0);
     vector<MassiveParticle*> copyadresses(mycluster.getAdresses());
        
     beginwith = mycluster.updateTotalEnergy();
@@ -28,13 +25,14 @@ int main() {
     int maxepoch = (maxtime/timestep);
     ofstream enrc("results/energycurve.txt", ios::out); //ouverture en ecriture (ecrase)
     ofstream traj("results/traj.txt", ios::out); //ouverture en ecriture (ecrase)
-
        
-    cout << scientific << setprecision(prec) << right;
+    cout << scientific << setprecision(PRINT_PREC) << right;
     traj << scientific << setprecision(16) << left;
     enrc << scientific << setprecision(16) << left;
 
-  
+
+
+    Event ev;
     ContextSettings settings;
     settings.antialiasingLevel=8;
 
@@ -43,15 +41,9 @@ int main() {
     //avec bouton de fermeture, barre de titre et possibilité de redimensionner la fenêtre
 
 
-    Event ev;
-
     /*--------------------------------------------------
                         MAIN LOOP
       --------------------------------------------------*/
-
-    valarray <double> REFPOS(0.,3);
-
-
 
     cout << "in main, sun mass and radius : " << mycluster.getsun().getmass() << "   " << mycluster.getsun().getradius() << endl;
     
@@ -60,7 +52,6 @@ int main() {
             app.clear(Color::Black);
             mycluster.euler();
 
-
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
                 REFPOS[0]=mycluster.getsun().getposition()[0];
                 REFPOS[1]=mycluster.getsun().getposition()[1];
@@ -68,13 +59,12 @@ int main() {
                 // REFPOS[0]=(*(copyadresses[2])).getposition()[0];
                 // REFPOS[1]=(*(copyadresses[2])).getposition()[1];
 
-
                 mycluster.draw(app,REFPOS);
                 
 
-                /*------------
-                  testZone
-                  -----------*/
+                /*------------------
+                  drawing test zone
+                  -----------------*/
 
                 // double R(80);
                 // valarray <int> window_center(0.,2);
@@ -90,49 +80,31 @@ int main() {
                 // circle.setPosition(pos[0],pos[1]);//DRAWING IN 2D !
                 // app.draw(circle);
 
+                /*-------------
+                  end test zone
+                  -------------*/
 
-                /*------------
-                  end testZone
-                  -----------*/
                 app.display();
             }
             if(mycluster.getEpoch()%int(pow(10,4)) == 0){
-                mycluster.updateTotalEnergy();
-                cout << "--------------------------------------------------------" << endl;
-                cout << "         Epoch         PotEn          KiEn         TotEn" << endl;
-                cout << "--------------------------------------------------------" << endl;
-                cout << setw(width) << double(mycluster.getEpoch());
-                cout << setw(width) << mycluster.getPotentialEnergy();
-                cout << setw(width) << mycluster.getKineticEnergy();
-                cout << setw(width) << mycluster.getTotalEnergy() << endl;
+                mycluster.print();//in terminal status printing
 
+                //file writing...
                 enrc << mycluster.getEpoch() << "    ";
                 enrc << mycluster.getPotentialEnergy() << "    ";
                 enrc << mycluster.getKineticEnergy() << "    ";
                 enrc << mycluster.getTotalEnergy() << endl;
 
-       
-                cout << endl;
-                cout << "----------------------------------------------------------------------------" << endl;
-                cout << "Body #             x             y             z          mass        radius" << endl;
-                cout << "----------------------------------------------------------------------------" << endl;
-
-                for(it=0 ; it<N ; it++){
-                    point = copyadresses[it];
-                    cout << setw(6) << it;
+                for(int i=0;i<N;i++){
+                    p=copyadresses[i];
                     for(int j=0;j<3;j++){
-                        cout << setw(width)  << (*point).getposition()[j];
-                        traj << setw(7+16+4) << (*point).getposition()[j];
+                        traj << std::setw(7+16+4) << (*p).getposition()[j];
                     }
-                    cout << setw(width) << (*point).getmass();
-                    cout << setw(width) << (*point).getradius();
-                    cout << endl;
                 }
-                cout << endl << endl;
                 traj << endl;
             }
         }
-        if(ev.type == Event::Closed) app.close();
+        if(ev.type == Event::Closed) app.close();//does not respond yet
     }
 
 

@@ -6,7 +6,6 @@ SolarSystem::SolarSystem(int N){
     valarray<double> o(0.,3);
 
     Star *starptr(0);
-    MassiveParticle *pointer(0);
     //    pointer = new MassiveParticle(o,o,pow(10,2)*maxm);
     starptr = new Star(o,o,pow(10,5)*RANGEM*maxm);
     m_sun = *starptr;

@@ -96,6 +96,38 @@ void Cluster::dealwithcollisions(){
 }
 
 
+
+void Cluster::print(std::ostream &os) {
+    int N(m_massadresses.size());
+    MassiveParticle *p(0);
+    updateTotalEnergy();
+    os << "--------------------------------------------------------" << endl;
+    os << "         Epoch         PotEn          KiEn         TotEn" << endl;
+    os << "--------------------------------------------------------" << endl;
+    os << std::setw(PRINT_WIDTH) << double(m_epoch);
+    os << std::setw(PRINT_WIDTH) << getPotentialEnergy();
+    os << std::setw(PRINT_WIDTH) << getKineticEnergy();
+    os << std::setw(PRINT_WIDTH) << getTotalEnergy();
+       
+    os << std::endl << std::endl;
+    os << "----------------------------------------------------------------------------" << endl;
+    os << "Body #             x             y             z          mass        radius" << endl;
+    os << "----------------------------------------------------------------------------" << endl;
+
+    for(int i=0;i<N;i++){
+        p = m_massadresses[i];
+        os << std::setw(6) << i;
+        for(int j=0;j<3;j++){
+            os << std::setw(PRINT_WIDTH)  << (*p).getposition()[j];
+        }
+        os << std::setw(PRINT_WIDTH) << (*p).getmass();
+        os << std::setw(PRINT_WIDTH) << (*p).getradius();
+        os << std::endl;
+    }
+    os << std::endl << std::endl;
+}
+
+
 void Cluster::draw(sf::RenderWindow &app, valarray <double> refpos) const{
     MassiveParticle *p(0);
     int N(m_massadresses.size());

@@ -4,7 +4,8 @@ using namespace std;
 
 double dot(valarray<double> a, valarray<double> b){
     double prod(0.);
-    for(int i=0 ; i<a.size() ; i++){
+    int S(a.size());
+    for(int i=0;i<S;i++){
         prod += a[i]*b[i];
     }
 return prod;

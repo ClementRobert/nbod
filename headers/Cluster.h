@@ -1,6 +1,7 @@
 #ifndef DEF_CLUSTER
 #define DEF_CLUSTER
 
+#include "Particle.h"
 #include "MassiveParticle.h"
 
 class Cluster{//friend class of MassiveParticle
@@ -21,6 +22,7 @@ class Cluster{//friend class of MassiveParticle
         double time();
 
         //affichage
+        void print(std::ostream &os=std::cout);
         void draw(sf::RenderWindow &app, valarray<double> refpos) const;//WIP, manque valeur par défaut
 
 

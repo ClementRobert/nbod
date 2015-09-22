@@ -28,6 +28,7 @@ Notes/TODOS
 
 ##Bugs
 - Le soleil (et peut-être les autres particules aussi) n'est pas affiché avec son propre rayon.
+- le bouton fermetture de la fenêtre ne répond pas (le if correspondant doit être mal positioné dans le code)
 
 misc notes (old)
 ================
