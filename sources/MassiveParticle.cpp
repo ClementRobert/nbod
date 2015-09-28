@@ -2,7 +2,7 @@
 
 
 //initialisation des attributs statiques
-vector<MassiveParticle*> MassiveParticle::adresses;//initialisation à vide
+vector<MassiveParticle*> MassiveParticle::adresses(0);//initialisation à vide
 
 
 //méthodes statiques
@@ -16,7 +16,6 @@ void MassiveParticle::printSystem(){
     cout << endl;
     cout << "==================================" << endl;
     cout << N << " particles total, ";
-//    cout << "epoch : " << epoch << endl;
     cout << "==================================" << endl;
     int m;
     for(m = 0 ; m < N ; m++){
@@ -31,7 +30,7 @@ void MassiveParticle::draw(sf::RenderWindow &app, valarray <double> refpos) cons
     valarray <int> window_center(0.,2);
     window_center[0]=app.getSize().x/2;
     window_center[1]=app.getSize().y/2;
-    sf::CircleShape circle(R,50);
+    sf::CircleShape circle(R,25);
     circle.setFillColor(sf::Color::Blue);
     valarray <double> pos(0.,2);
     for(int i=0;i<2;i++){
@@ -71,25 +70,25 @@ valarray<double> MassiveParticle::compacc(MassiveParticle part2) const {
 
 
 //constructeurs
-MassiveParticle::MassiveParticle() : Particle(), m_mass((rand()%maxm+1)*RANGEM){
+MassiveParticle::MassiveParticle() : Particle(), m_mass((rand()%maxm+1)*RANGEM), m_radius(0), m_kineticEnergy(0), m_potentialEnergy(0){
     setke();
     setradius();
     adresses.push_back(this);
 }
 
-MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass((rand()%maxm+1)*RANGEM), m_potentialEnergy(0.){ 
+MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel) : Particle(pos, vel), m_mass((rand()%maxm+1)*RANGEM), m_radius(0), m_kineticEnergy(0), m_potentialEnergy(0){ 
     setke();
     setradius();
     adresses.push_back(this);
 }
 
-MassiveParticle::MassiveParticle(double mass) : Particle(), m_mass(mass), m_potentialEnergy(0.){
+MassiveParticle::MassiveParticle(double mass) : Particle(), m_mass(mass), m_radius(0), m_kineticEnergy(0), m_potentialEnergy(0){
     setke();
     setradius();
     adresses.push_back(this);
 }
 
-MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel, double mass) : Particle(pos, vel), m_mass(mass), m_potentialEnergy(0.){
+MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel, double mass) : Particle(pos, vel), m_mass(mass), m_radius(0), m_kineticEnergy(0), m_potentialEnergy(0){
     setke();
     setradius();
     adresses.push_back(this);
@@ -99,7 +98,8 @@ MassiveParticle::MassiveParticle(valarray<double> pos, valarray<double> vel, dou
 
 //
 void MassiveParticle::setradius(){
-    m_radius = pow(m_mass/asterdensity, 1./3.);
+  //    m_radius = pow(m_mass/asterdensity, 1./3.);
+    m_radius = pow(m_mass/5, 1./3.);
 }
 
 

@@ -8,11 +8,14 @@ using namespace std;
 using namespace sf;
 
 int main() {
+
+
     srand(time(0));//pas trouvé de meilleur endroit pour le seed
     double beginwith, endwith;
 
-    //Cluster mycluster(20,2);//20 bodies 2D cluster
+    //Cluster mycluster(1,2);//20 bodies 2D cluster
     SolarSystem mycluster(15);//15 planets ssyst
+
     valarray <double> REFPOS(0.,3);
     int N(mycluster.getAdresses().size());
 
@@ -45,7 +48,6 @@ int main() {
                         MAIN LOOP
       --------------------------------------------------*/
 
-    cout << "in main, sun mass and radius : " << mycluster.getsun().getmass() << "   " << mycluster.getsun().getradius() << endl;
     
     while (app.isOpen()){
         while(mycluster.getEpoch()<maxepoch){
@@ -53,11 +55,11 @@ int main() {
             mycluster.euler();
 
             if(mycluster.getEpoch()%int(pow(10,2)) == 0){
-                REFPOS[0]=mycluster.getsun().getposition()[0];
-                REFPOS[1]=mycluster.getsun().getposition()[1];
+              //REFPOS[0]=mycluster.getsun().getposition()[0];
+              //REFPOS[1]=mycluster.getsun().getposition()[1];
                 //get fun
-                // REFPOS[0]=(*(copyadresses[2])).getposition()[0];
-                // REFPOS[1]=(*(copyadresses[2])).getposition()[1];
+                 REFPOS[0]=(*(copyadresses[2])).getposition()[0];
+                 REFPOS[1]=(*(copyadresses[2])).getposition()[1];
 
                 mycluster.draw(app,REFPOS);
                 

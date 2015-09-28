@@ -23,7 +23,7 @@ int const maxx(50), maxv(400), maxm(5000);
 double const RANGEX(pow(10,1./2)), RANGEV(pow(10,-5)), RANGEM(pow(10,-10));
 
 
-const double asterdensity(5.);
+//const double asterdensity(5.);
 bool const fuseatcollision(1);
 double const seuil(2.5);//temporaire, distance en dessous de laquelle on fusionne deux particules
 

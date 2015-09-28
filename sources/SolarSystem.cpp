@@ -1,20 +1,18 @@
 #include "SolarSystem.h"
 
-SolarSystem::SolarSystem(int N){
+SolarSystem::SolarSystem(int N) : m_sun(pow(10,5)*RANGEM*maxm){
+
+  cout << "balise 0" << endl;
     valarray<double> orbitedirection(0.,3);
     orbitedirection[2] = 1.;
-    valarray<double> o(0.,3);
-
-    Star *starptr(0);
-    //    pointer = new MassiveParticle(o,o,pow(10,2)*maxm);
-    starptr = new Star(o,o,pow(10,5)*RANGEM*maxm);
-    m_sun = *starptr;
-    m_massadresses.push_back(starptr);//Pas compatible    
-    cout << "in SS constructor, radius of the sun is : " << m_sun.m_radius << endl; 
+    valarray<double> nullvector(0.,3);
+    Star *starptr(&m_sun);
+    m_sun.setposition(nullvector);
+    m_sun.setvelocity(nullvector);
     
-    int y;
-    for(y=0 ; y<N; y++){
-        genSatellite(orbitedirection);
+    m_massadresses.push_back(starptr);//Pas compatible    
+    for(int i=0 ; i<N; i++){
+      genSatellite(orbitedirection);
     }
 }
 

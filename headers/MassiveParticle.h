@@ -42,8 +42,8 @@ class MassiveParticle : public Particle {
         virtual MassiveParticle& operator=(MassiveParticle newpart);
 
     protected :
-        double m_radius;
         double m_mass;
+        double m_radius;
         double m_kineticEnergy;
         double m_potentialEnergy;
 
