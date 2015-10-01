@@ -8,6 +8,7 @@ Notes/TODOS
 ##A faire 
 
 - créer classes 2D et 3D vectors puis classes filles pos, vel, acc, forces, en vue d'implémenter des lois d'additon propres et éviter les erreurs du type (acc+vel) dans le code.
+- __ réfléchir à une méthode de résolution matricielle des équations du mouvement__
 - ameliorer/afiner la méthode de construction random des position/velocités/masses selon une loi uniforme
 - permettre l'utilisation d'une loi gaussienne avec la dispersion en argument à la fois pour les masses, les positions et les velocités
 - ajouter affichage du centre de masse
