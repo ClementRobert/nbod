@@ -1,5 +1,6 @@
 #include "Cluster.h"
 
+
 Cluster::Cluster(int N,int dim){
     MassiveParticle *pointer(0);
     int y,d;

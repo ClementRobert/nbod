@@ -4,6 +4,7 @@
 #include "Particle.h"
 #include "MassiveParticle.h"
 #include <boost/numeric/odeint/stepper/bulirsch_stoer.hpp>
+
 using namespace boost::numeric::odeint;
 
 class Cluster{//friend class of MassiveParticle
