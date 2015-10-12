@@ -3,6 +3,8 @@
 
 #include "Particle.h"
 #include "MassiveParticle.h"
+#include <boost/numeric/odeint/stepper/bulirsch_stoer.hpp>
+using namespace boost::numeric::odeint;
 
 class Cluster{//friend class of MassiveParticle
     public :
@@ -11,6 +13,7 @@ class Cluster{//friend class of MassiveParticle
         void euler();//walk one step (euler)
         void rk4();//rk4
         void leapfrog();//leapfrog
+        void bulirsch_stoer();//
         int getEpoch();
         vector<MassiveParticle*> getAdresses();
         void updateKinetic();

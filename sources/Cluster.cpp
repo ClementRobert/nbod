@@ -47,6 +47,14 @@ valarray<valarray<double> > Cluster::componestep(valarray<valarray<double> > boo
 /*--------------------------------------------------
                      INTEGRATORS
   --------------------------------------------------*/
+
+void Cluster::bulirsch_stoer(){
+
+}
+
+
+
+
 void Cluster::euler(){
     int N(m_massadresses.size()), i;
     valarray<double> o(0.,3);
